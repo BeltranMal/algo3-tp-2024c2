@@ -1,7 +1,7 @@
 public class BloqueEspejo extends Bloque implements Laser{
 
-    public BloqueEspejo(Coordenada posicion, String tipo) {
-        super(posicion, tipo);
+    public BloqueEspejo(Coordenada posicion) {
+        super(posicion, "espejo");
     }
 
     @Override

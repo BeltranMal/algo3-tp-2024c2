@@ -1,6 +1,6 @@
 public class BloqueOpacoMovil extends Bloque implements Laser{
-    public BloqueOpacoMovil(Coordenada posicion, String tipo) {
-        super(posicion, tipo);
+    public BloqueOpacoMovil(Coordenada posicion) {
+        super(posicion, "opacoMovil");
     }
 
     @Override

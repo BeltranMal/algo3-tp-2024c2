@@ -1,7 +1,7 @@
 public class BloqueCristal extends Bloque implements Laser{
 
-    public BloqueCristal(Coordenada posicion, String tipo) {
-        super(posicion, tipo);
+    public BloqueCristal(Coordenada posicion) {
+        super(posicion , "cristal");
     }
 
     @Override

@@ -1,6 +1,6 @@
 public class BloqueVidrio extends Bloque implements  Laser{
-    public BloqueVidrio(Coordenada posicion, String tipo) {
-        super(posicion, tipo);
+    public BloqueVidrio(Coordenada posicion) {
+        super(posicion, "vidrio");
     }
 
     @Override
