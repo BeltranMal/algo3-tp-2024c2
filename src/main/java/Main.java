@@ -3,10 +3,7 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException {
         System.out.println("Hello, World!");
-        Tablero tablero = new Tablero("level1");
-        tablero.imprimirTablero();
-
-
+        Nivel nivel = new Nivel("level1");
 
     }
 }

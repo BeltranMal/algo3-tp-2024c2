@@ -6,5 +6,7 @@ public class Elemento {
         this.coordenada = coordenada;
     }
 
-
+    public Coordenada getPosicion() {
+        return this.coordenada;
+    }
 }
