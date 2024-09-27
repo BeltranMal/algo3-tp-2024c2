@@ -1,6 +1,7 @@
-public class BloqueOpacoFijo extends Elemento implements Laser {
+public class BloqueOpacoFijo extends Bloque implements Laser {
     public BloqueOpacoFijo(Coordenada coordenada) {
-        super(coordenada);
+
+        super(coordenada,"opacoFijo");
     }
 
     public void interacccionLaser() {

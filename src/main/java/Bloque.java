@@ -1,4 +1,4 @@
-public abstract class Bloque extends Elemento {
+public class Bloque extends Elemento {
     private String tipo;
 
     public Bloque(Coordenada posicion, String tipo) {
@@ -6,7 +6,16 @@ public abstract class Bloque extends Elemento {
         this.tipo = tipo;
     }
 
-    public abstract void moverBloque(Coordenada posicion);
+    public Coordenada moverBloque(Coordenada posicion_nueva){
+        Coordenada posicion_antigua = this.getPosicion();
+        if (!tipo.equals("opacoFijo")){
+            this.setPosicion(posicion_nueva);
+        }
+        else{
+            return new Coordenada(-1,-1);
+        }
+        return posicion_antigua;
+    }
 
 
 

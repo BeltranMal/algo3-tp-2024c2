@@ -9,4 +9,8 @@ public class Elemento {
     public Coordenada getPosicion() {
         return this.coordenada;
     }
+
+    protected void setPosicion(Coordenada posicion) {
+        this.coordenada = posicion;
+    }
 }

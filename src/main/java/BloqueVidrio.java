@@ -4,12 +4,6 @@ public class BloqueVidrio extends Bloque implements  Laser{
     }
 
     @Override
-    public void moverBloque(Coordenada posicion) {
-       // mover bloque
-
-    }
-
-    @Override
     public void interacccionLaser() {
         // refleja el lasxzxzxzxzx
     }

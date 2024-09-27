@@ -1,7 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.stream.Stream;
+import java.util.ArrayList;
 
 public class Nivel {
     Tablero tablero;
@@ -11,29 +11,50 @@ public class Nivel {
         cargarNivel(nombreNivel);
     }
 
+
+
+
     private void cargarNivel(String nombreNivel) throws IOException {
 
         ClassLoader classLoader = getClass().getClassLoader();
         BufferedReader reader = new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream("TP1 TB025 levels/" + nombreNivel + ".dat")));
-        String linea = null;
+        String linea = reader.readLine();
+        ArrayList<String> renglones = new ArrayList<>();
 
-        linea = reader.readLine();
-
-       int filas = linea.length(); // como sacar las filas ????
+        int filas = 0;
         int columnas = linea.length();
-        tablero = new Tablero(filas, columnas);
+
+        // Leer el archivo línea por línea
+        while (!linea.trim().isEmpty()) { // no usar isEmpty(
+            renglones.add(linea); // Almacenar la línea
+            filas++; // Incrementar el contador de filas
+            linea = reader.readLine(); // Leer la siguiente línea
+        }
+
+        this.tablero = new Tablero(filas, columnas);
 
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
                 Coordenada posicion = new Coordenada(i, j);
-                Elemento elemento = interpretarCaracterParte1(linea.charAt(j), posicion); // solo primera parte
-                if (elemento != null) {
-                    tablero.agregarElemento(elemento);
+
+                char caracter = renglones.get(i).charAt(j);
+                Elemento elemento = interpretarCaracterParte1(caracter, posicion); // solo primera parte
+
+                if (elemento != null) { // si no es una celda vacia
+                    tablero.inicializarGrilla(elemento);
+                }
+                else{
+                    System.out.print("Celda vacía");
                 }
             }
-            linea = reader.readLine();
         }
+
         tablero.imprimirTablero();
+
+
+        // leer emisores y objetivos
+        // leer segunda parte -> como y donde guardarlo
+        // guardar en algun lado y mandarselo a la parte grafica -> en la mitad de un bloque -> no se puede ubicar en un tablero
 
 
     }

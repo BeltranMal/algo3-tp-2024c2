@@ -4,16 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85f88356-206a-4fa2-9ec7-d173872ad934" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/untitled/src/main/java/Elemento.java" beforeDir="false" afterPath="$PROJECT_DIR$/untitled/src/main/java/Elemento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/untitled/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled/src/main/java/Nivel.java" beforeDir="false" afterPath="$PROJECT_DIR$/untitled/src/main/java/Nivel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled/src/main/java/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/untitled/src/main/java/Tablero.java" afterDir="false" />
-    </list>
+    <list default="true" id="85f88356-206a-4fa2-9ec7-d173872ad934" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -31,6 +33,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,

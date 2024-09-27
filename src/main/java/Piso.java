@@ -10,18 +10,14 @@ public class Piso extends Elemento {
         return bloque == null;
     }
 
-    public boolean colocarBloque(Bloque nuevoBloque) {
-        if (estaVacio()) {
-            this.bloque = nuevoBloque;
-            return true;
-        }
-        return false;
+    public void colocarBloque(Bloque nuevoBloque) {
+        this.bloque = nuevoBloque;
     }
 
-    public Bloque removerBloque() {
-        Bloque bloqueRemovido = this.bloque;
+    public void removerBloque() {
         this.bloque = null;
-        return bloqueRemovido;
     }
 }
+
+
 

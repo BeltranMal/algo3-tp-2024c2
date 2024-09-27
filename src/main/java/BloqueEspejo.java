@@ -4,11 +4,7 @@ public class BloqueEspejo extends Bloque implements Laser{
         super(posicion, "espejo");
     }
 
-    @Override
-    public void moverBloque(Coordenada posicion) {
-        // mover bloque
 
-    }
 
     @Override
     public void interacccionLaser() {
