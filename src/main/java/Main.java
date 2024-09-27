@@ -3,7 +3,7 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException {
         System.out.println("Hello, World!");
-        Nivel nivel = new Nivel("level6");
+        Nivel nivel = new Nivel("level2");
 
     }
 }

@@ -2,6 +2,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Nivel {
     Tablero tablero;
@@ -20,32 +22,28 @@ public class Nivel {
         BufferedReader reader = new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream("TP1 TB025 levels/" + nombreNivel + ".dat")));
         String linea = reader.readLine();
         ArrayList<String> renglones = new ArrayList<>();
-
+        ArrayList<Integer> cantidadColumnas = new ArrayList<>();
         int filas = 0;
-        int columnas = linea.length();
+        int columnas;
+        cantidadColumnas.add(linea.length());
 
         // Leer el archivo línea por línea
-        while (!linea.trim().isEmpty()) { // no usar isEmpty(
+        while (!linea.trim().isEmpty()) {
             renglones.add(linea); // Almacenar la línea
             filas++; // Incrementar el contador de filas
             linea = reader.readLine(); // Leer la siguiente línea
+            cantidadColumnas.add(linea.length());
         }
-
-        this.tablero = new Tablero(filas, columnas);
+        this.tablero = new Tablero(filas, Collections.max(cantidadColumnas));
 
         for (int i = 0; i < filas; i++) {
+            columnas = cantidadColumnas.get(i);
             for (int j = 0; j < columnas; j++) {
                 Coordenada posicion = new Coordenada(i, j);
-
                 char caracter = renglones.get(i).charAt(j);
                 Elemento elemento = interpretarCaracterParte1(caracter, posicion); // solo primera parte
+                tablero.inicializarGrilla(elemento);
 
-                if (elemento != null) { // si no es una celda vacia
-                    tablero.inicializarGrilla(elemento);
-                }
-                else{
-                    System.out.print("Celda vacía");
-                }
             }
         }
 

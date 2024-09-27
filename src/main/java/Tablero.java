@@ -33,6 +33,13 @@ public class Tablero {
     }
 
 
+    private void agregarElemento(Elemento elemento, Coordenada coordenada){
+        int x = coordenada.getCoordenada().get(0);
+        int y = coordenada.getCoordenada().get(1);
+        grilla[x][y] = elemento;
+    }
+
+
     public void actualizarTablero(Coordenada coordenadaNueva, Bloque bloque){ // para mover el bloque
 
         if (movimientoValido(coordenadaNueva)){
@@ -41,19 +48,14 @@ public class Tablero {
 
             if(!antigua_posicion.equals(new Coordenada(-1, -1))){
 
-                int x_nuevo = coordenadaNueva.getCoordenada().get(0);
-                int y_nuevo = coordenadaNueva.getCoordenada().get(1);
+
                 Piso piso = (Piso) obtenerElemento(coordenadaNueva);
                 piso.colocarBloque(bloque);
-
-                grilla[x_nuevo][y_nuevo] = bloque;
-
-                int x_antigua = antigua_posicion.getCoordenada().get(0);
-                int y_antigua = antigua_posicion.getCoordenada().get(1);
+                agregarElemento(bloque, coordenadaNueva);
 
                 Piso pisoNuevo = new Piso(bloque.getPosicion());
                 pisoNuevo.removerBloque();
-                grilla[x_antigua][y_antigua] = pisoNuevo;
+                agregarElemento(pisoNuevo, antigua_posicion);
             }
         }
     }
@@ -63,19 +65,15 @@ public class Tablero {
     public void inicializarGrilla(Elemento elemento) {
 
         // agregar validaciones
-        Coordenada posicion = elemento.getPosicion();
 
-        Piso pisoNuevo = new Piso(posicion);
-        if (elemento instanceof Bloque) {
-            pisoNuevo.colocarBloque((Bloque) elemento);
-            int x = posicion.getCoordenada().get(0);
-            int y = posicion.getCoordenada().get(1);
-            grilla[x][y] = elemento;
-        }
-        else if (elemento instanceof Piso){
-            int x = posicion.getCoordenada().get(0);
-            int y = posicion.getCoordenada().get(1);
-            grilla[x][y] = elemento;
+        if (elemento != null) {
+            Coordenada posicion = elemento.getPosicion();
+            if (elemento instanceof Bloque) {
+                Piso pisoNuevo = new Piso(posicion);
+                pisoNuevo.colocarBloque((Bloque) elemento);
+
+            }
+            agregarElemento(elemento, posicion);
         }
     }
 
@@ -84,7 +82,7 @@ public class Tablero {
             for (int j = 0; j < columnas; j++) {
                 Elemento elemento = grilla[i][j];
                 if (elemento == null) {
-                    System.out.print(" ");
+                    System.out.print("celda_vacia");
                 } else {
                     System.out.print(elemento);
                 }
