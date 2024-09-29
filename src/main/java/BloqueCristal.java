@@ -1,12 +1,12 @@
-public class BloqueCristal extends Bloque implements Laser{
+public class BloqueCristal extends Bloque implements interactuarConLaser {
 
     public BloqueCristal(Coordenada posicion) {
-        super(posicion , "cristal");
+        super(new Piso(posicion) , "cristal");
     }
 
 
     @Override
-    public void interacccionLaser() {
+    public void movimientoLaser() {
         // bifurca el laser
 
     }

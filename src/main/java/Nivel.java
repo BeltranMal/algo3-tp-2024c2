@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class Nivel {
@@ -35,7 +34,6 @@ public class Nivel {
             cantidadColumnas.add(linea.length());
         }
         this.tablero = new Tablero(filas, Collections.max(cantidadColumnas));
-
         for (int i = 0; i < filas; i++) {
             columnas = cantidadColumnas.get(i);
             for (int j = 0; j < columnas; j++) {
@@ -46,9 +44,35 @@ public class Nivel {
 
             }
         }
-
         tablero.imprimirTablero();
 
+        linea = reader.readLine();
+
+        int x;
+        int y;
+        while (linea != null) {
+
+            if(linea.startsWith("E")){
+
+
+                String[] partes = linea.split(" ");
+                x = Integer.parseInt(partes[1]);
+                y = Integer.parseInt(partes[2]);
+                Coordenada posicion = new Coordenada(x, y);
+                String direccion = partes[3];
+                new EmisorLaser(posicion, direccion);
+
+            }
+            else if (linea.startsWith("G")) {
+                String[] partes = linea.split(" ");
+                x = Integer.parseInt(partes[1]);
+                y = Integer.parseInt(partes[2]);
+                Coordenada posicion = new Coordenada(x, y);
+                new Objetivo(posicion);
+            }
+            // Leer la siguiente línea
+            linea = reader.readLine();
+        }
 
         // leer emisores y objetivos
         // leer segunda parte -> como y donde guardarlo

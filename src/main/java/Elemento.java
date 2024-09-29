@@ -1,4 +1,4 @@
-public class Elemento {
+public abstract class Elemento {
 
     private Coordenada coordenada;
 
@@ -13,4 +13,6 @@ public class Elemento {
     protected void setPosicion(Coordenada posicion) {
         this.coordenada = posicion;
     }
+
+    public abstract void ubicarElemento(Tablero tablero);
 }

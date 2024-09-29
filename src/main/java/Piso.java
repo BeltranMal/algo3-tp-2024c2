@@ -6,16 +6,25 @@ public class Piso extends Elemento {
         this.bloque = null;
     }
 
+    @Override
+    public void ubicarElemento(Tablero tablero) {
+        tablero.agregarElemento(this, this.getPosicion());
+    }
+
     public boolean estaVacio() {
         return bloque == null;
     }
 
     public void colocarBloque(Bloque nuevoBloque) {
+
         this.bloque = nuevoBloque;
+        nuevoBloque.setPiso(this);
     }
 
     public void removerBloque() {
+
         this.bloque = null;
+        this.bloque.setPiso(null);
     }
 }
 

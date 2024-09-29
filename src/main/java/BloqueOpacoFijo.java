@@ -1,10 +1,10 @@
-public class BloqueOpacoFijo extends Bloque implements Laser {
-    public BloqueOpacoFijo(Coordenada coordenada) {
+public class BloqueOpacoFijo extends Bloque implements interactuarConLaser {
 
-        super(coordenada,"opacoFijo");
+    public BloqueOpacoFijo(Coordenada coordenada) {
+        super(new Piso(coordenada),"opacoFijo");
     }
 
-    public void interacccionLaser() {
+    public void movimientoLaser() {
         // TODO - implement BloqueOpacoFijo.interacccionLaser
 
     }

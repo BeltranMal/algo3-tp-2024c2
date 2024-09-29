@@ -14,8 +14,8 @@ public class Tablero {
     // set on click -> el elemento donde se hizo click es nuestro bloque -> obtenereLEMENTO -> se usa en parte grafica -> se usa en la parte logica
 
     public Elemento obtenerElemento(Coordenada coordenada){
-        int x = coordenada.getCoordenada().get(0);
-        int y = coordenada.getCoordenada().get(1);
+        int x = coordenada.x;
+        int y = coordenada.y;
         return grilla[x][y];
     }
 
@@ -23,19 +23,20 @@ public class Tablero {
 
         Elemento elemento = obtenerElemento(coordenada);
 
-        int x = elemento.getPosicion().getCoordenada().get(0);
-        int y = elemento.getPosicion().getCoordenada().get(1);
+        int x = elemento.getPosicion().x;
+        int y = elemento.getPosicion().y;
 
         if (x >= 0 && x < filas && y >= 0 && y < columnas) {
+
             return (elemento instanceof Piso && ((Piso) elemento).estaVacio());
         }
         return false;
     }
 
 
-    private void agregarElemento(Elemento elemento, Coordenada coordenada){
-        int x = coordenada.getCoordenada().get(0);
-        int y = coordenada.getCoordenada().get(1);
+    public void agregarElemento(Elemento elemento, Coordenada coordenada){
+        int x = coordenada.x;
+        int y = coordenada.y;
         grilla[x][y] = elemento;
     }
 
@@ -47,8 +48,6 @@ public class Tablero {
             Coordenada antigua_posicion = bloque.moverBloque(coordenadaNueva);
 
             if(!antigua_posicion.equals(new Coordenada(-1, -1))){
-
-
                 Piso piso = (Piso) obtenerElemento(coordenadaNueva);
                 piso.colocarBloque(bloque);
                 agregarElemento(bloque, coordenadaNueva);
@@ -63,17 +62,8 @@ public class Tablero {
 
 
     public void inicializarGrilla(Elemento elemento) {
-
-        // agregar validaciones
-
         if (elemento != null) {
-            Coordenada posicion = elemento.getPosicion();
-            if (elemento instanceof Bloque) {
-                Piso pisoNuevo = new Piso(posicion);
-                pisoNuevo.colocarBloque((Bloque) elemento);
-
-            }
-            agregarElemento(elemento, posicion);
+            elemento.ubicarElemento(this);
         }
     }
 

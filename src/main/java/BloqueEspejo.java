@@ -1,7 +1,7 @@
-public class BloqueEspejo extends Bloque implements Laser{
+public class BloqueEspejo extends Bloque implements interactuarConLaser {
 
     public BloqueEspejo(Coordenada posicion) {
-        super(posicion, "espejo");
+        super(new Piso(posicion), "espejo");
     }
 /*
     private String reflejarDireccion(String direccion) {
@@ -31,7 +31,7 @@ public class BloqueEspejo extends Bloque implements Laser{
 
 
     @Override
-    public void interacccionLaser() {
+    public void movimientoLaser() {
         // refleja el laser
 
     }

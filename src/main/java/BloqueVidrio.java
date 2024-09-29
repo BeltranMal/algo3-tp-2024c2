@@ -1,10 +1,10 @@
-public class BloqueVidrio extends Bloque implements  Laser{
+public class BloqueVidrio extends Bloque implements interactuarConLaser {
     public BloqueVidrio(Coordenada posicion) {
-        super(posicion, "vidrio");
+        super(new Piso(posicion), "vidrio");
     }
 
     @Override
-    public void interacccionLaser() {
+    public void movimientoLaser() {
         // refleja el lasxzxzxzxzx
     }
 }

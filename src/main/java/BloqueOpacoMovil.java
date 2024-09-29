@@ -1,10 +1,10 @@
-public class BloqueOpacoMovil extends Bloque implements Laser{
+public class BloqueOpacoMovil extends Bloque implements interactuarConLaser {
     public BloqueOpacoMovil(Coordenada posicion) {
-        super(posicion, "opacoMovil");
+        super(new Piso(posicion), "opacoMovil");
     }
 
     @Override
-    public void interacccionLaser() {
+    public void movimientoLaser() {
         // absorbe el laser
 
     }
