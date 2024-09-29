@@ -1,16 +1,17 @@
-public class Objetivo implements interactuarConLaser {
-    private final Coordenada posicion;
+public class Objetivo extends Elemento implements interactuarConLaser {
 
     public Objetivo(Coordenada posicion) {
-        this.posicion = posicion;
-    }
-
-    public Coordenada getPosicion() {
-        return posicion;
+        super(posicion);
     }
 
     @Override
-    public void movimientoLaser() {
-        // se destruye
+    public void ubicarElemento(Tablero tablero) {
+        tablero.agregarElemento(this, this.getPosicion());
+    }
+
+
+    @Override
+    public void movimientoLaser(Laser laser) {
+        laser.setPosicion(getPosicion());
     }
 }

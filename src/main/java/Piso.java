@@ -1,4 +1,4 @@
-public class Piso extends Elemento {
+public class Piso extends Elemento{
     private Bloque bloque;
 
     public Piso(Coordenada coordenada) {
@@ -26,6 +26,7 @@ public class Piso extends Elemento {
         this.bloque = null;
         this.bloque.setPiso(null);
     }
+
 }
 
 

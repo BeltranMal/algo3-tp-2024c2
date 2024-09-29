@@ -4,8 +4,7 @@ public class BloqueOpacoMovil extends Bloque implements interactuarConLaser {
     }
 
     @Override
-    public void movimientoLaser() {
-        // absorbe el laser
-
+    public void movimientoLaser(Laser laser) {
+        laser.setDireccion(laser.getDireccion());
     }
 }

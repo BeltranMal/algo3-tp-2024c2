@@ -5,28 +5,30 @@ public class Tablero {
     private final int columnas;
 
     public Tablero(int filas, int columnas) {
-
-        this.filas = filas;
-        this.columnas = columnas;
-        this.grilla = new Elemento[filas][columnas];
+        this.filas = filas * 2 + 1;
+        this.columnas = columnas * 2 + 1;
+        this.grilla = new Elemento[this.filas][this.columnas];
     }
 
     // set on click -> el elemento donde se hizo click es nuestro bloque -> obtenereLEMENTO -> se usa en parte grafica -> se usa en la parte logica
 
     public Elemento obtenerElemento(Coordenada coordenada){
+        int x = (coordenada.x + 1) * 2 -1;
+        int y = (coordenada.y + 1) * 2 -1;
+        return grilla[x][y];
+    }
+
+    public boolean posicionValida(Coordenada coordenada){
         int x = coordenada.x;
         int y = coordenada.y;
-        return grilla[x][y];
+        return (x >= 0 && x < filas && y >= 0 && y < columnas);
     }
 
     public boolean movimientoValido(Coordenada coordenada){
 
         Elemento elemento = obtenerElemento(coordenada);
 
-        int x = elemento.getPosicion().x;
-        int y = elemento.getPosicion().y;
-
-        if (x >= 0 && x < filas && y >= 0 && y < columnas) {
+        if (posicionValida(elemento.getPosicion())) {
 
             return (elemento instanceof Piso && ((Piso) elemento).estaVacio());
         }
@@ -72,9 +74,10 @@ public class Tablero {
             for (int j = 0; j < columnas; j++) {
                 Elemento elemento = grilla[i][j];
                 if (elemento == null) {
-                    System.out.print("celda_vacia");
+                    System.out.print(" ");
+
                 } else {
-                    System.out.print(elemento);
+                    System.out.print(elemento.getClass().getSimpleName());
                 }
             }
             System.out.println();

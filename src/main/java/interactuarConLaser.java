@@ -1,3 +1,3 @@
 public interface interactuarConLaser {
-    public void movimientoLaser();
+    public void movimientoLaser(Laser laser);
 }

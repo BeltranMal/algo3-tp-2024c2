@@ -4,9 +4,9 @@ public class BloqueOpacoFijo extends Bloque implements interactuarConLaser {
         super(new Piso(coordenada),"opacoFijo");
     }
 
-    public void movimientoLaser() {
-        // TODO - implement BloqueOpacoFijo.interacccionLaser
-
+    @Override
+    public void movimientoLaser(Laser laser) {
+        laser.setDireccion(laser.getDireccion());
     }
 
 }

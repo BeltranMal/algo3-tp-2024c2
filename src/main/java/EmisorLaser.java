@@ -1,28 +1,26 @@
-public class EmisorLaser  implements interactuarConLaser {
-    private final Coordenada posicion;
+public class EmisorLaser extends Elemento {
     private final String direccion;
 
 
     public EmisorLaser(Coordenada posicion, String direccion) {
-
-        this.posicion = posicion;
+        super(posicion);
         this.direccion = direccion;
+        //dispararLaser();
     }
 
-    public Coordenada getPosicion() {
-        return posicion;
+    @Override
+    public void ubicarElemento(Tablero tablero) {
+        tablero.agregarElemento(this, this.getPosicion());
     }
 
     public String getDireccion() {
         return direccion;
     }
 /*
-    public void disparar(Coordenada posicion, String direccion) {
-
+    public void dispararLaser() {
+        Laser laser = new Laser(this, tablero);
+        laser.moverLaser();
     }
-*/
-    @Override
-    public void movimientoLaser() {
 
-    }
+ */
 }

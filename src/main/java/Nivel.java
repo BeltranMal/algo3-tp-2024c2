@@ -19,11 +19,14 @@ public class Nivel {
 
         ClassLoader classLoader = getClass().getClassLoader();
         BufferedReader reader = new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream("TP1 TB025 levels/" + nombreNivel + ".dat")));
+
         String linea = reader.readLine();
+
         ArrayList<String> renglones = new ArrayList<>();
         ArrayList<Integer> cantidadColumnas = new ArrayList<>();
+
         int filas = 0;
-        int columnas;
+        int columnas, centro_x, centro_y;
         cantidadColumnas.add(linea.length());
 
         // Leer el archivo línea por línea
@@ -33,51 +36,42 @@ public class Nivel {
             linea = reader.readLine(); // Leer la siguiente línea
             cantidadColumnas.add(linea.length());
         }
+
         this.tablero = new Tablero(filas, Collections.max(cantidadColumnas));
         for (int i = 0; i < filas; i++) {
             columnas = cantidadColumnas.get(i);
             for (int j = 0; j < columnas; j++) {
-                Coordenada posicion = new Coordenada(i, j);
+
+                centro_x = (i + 1) * 2 - 1;
+                centro_y = (j + 1) * 2 - 1;
+                Coordenada posicion = new Coordenada(centro_x, centro_y);
                 char caracter = renglones.get(i).charAt(j);
                 Elemento elemento = interpretarCaracterParte1(caracter, posicion); // solo primera parte
                 tablero.inicializarGrilla(elemento);
-
             }
         }
-        tablero.imprimirTablero();
-
         linea = reader.readLine();
 
-        int x;
-        int y;
         while (linea != null) {
-
-            if(linea.startsWith("E")){
-
-
-                String[] partes = linea.split(" ");
-                x = Integer.parseInt(partes[1]);
-                y = Integer.parseInt(partes[2]);
-                Coordenada posicion = new Coordenada(x, y);
-                String direccion = partes[3];
-                new EmisorLaser(posicion, direccion);
-
-            }
-            else if (linea.startsWith("G")) {
-                String[] partes = linea.split(" ");
-                x = Integer.parseInt(partes[1]);
-                y = Integer.parseInt(partes[2]);
-                Coordenada posicion = new Coordenada(x, y);
-                new Objetivo(posicion);
-            }
-            // Leer la siguiente línea
+            String[] partes = linea.split(" ");
+            Elemento elemento = interpretarParte2(partes);
+            tablero.inicializarGrilla(elemento);
             linea = reader.readLine();
         }
+        tablero.imprimirTablero();
+    }
 
-        // leer emisores y objetivos
-        // leer segunda parte -> como y donde guardarlo
-        // guardar en algun lado y mandarselo a la parte grafica -> en la mitad de un bloque -> no se puede ubicar en un tablero
 
+
+    private Elemento interpretarParte2(String[] partes) {
+        int y = Integer.parseInt(partes[1]);
+        int x = Integer.parseInt(partes[2]);
+        Coordenada posicion = new Coordenada(x, y);
+        return switch (partes[0]) {
+            case "E" -> new EmisorLaser(posicion, partes[3]);
+            case "G" -> new Objetivo(posicion);
+            default -> null;
+        };
 
     }
 
