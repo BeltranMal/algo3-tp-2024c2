@@ -1,4 +1,4 @@
-public class Objetivo extends Elemento implements interactuarConLaser {
+public class Objetivo extends Elemento {
 
     public Objetivo(Coordenada posicion) {
         super(posicion);
@@ -9,9 +9,9 @@ public class Objetivo extends Elemento implements interactuarConLaser {
         tablero.agregarElemento(this, this.getPosicion());
     }
 
+    /*
+    si laser en la misma posicion que objetivo entonces Completo = True -> metodo publico
+    si todos los objetivos = true entonces gano -> se haria en nivel
+     */
 
-    @Override
-    public void movimientoLaser(Laser laser) {
-        laser.setPosicion(getPosicion());
-    }
 }

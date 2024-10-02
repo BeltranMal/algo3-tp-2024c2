@@ -24,9 +24,8 @@ public class Laser {
             Elemento elemento = tablero.obtenerElemento(this.posicion);
             posicionAnterior = this.posicion;
 
-            if (elemento instanceof Bloque) {
-                Bloque bloque = (Bloque) elemento;
-                // bloque.interactuarConLaser(this);
+            if (elemento instanceof Bloque bloque) {
+                bloque.movimientoLaser(this);
             }
 
             setPosicion(cambioPosicion(posicionAnterior, direccion));

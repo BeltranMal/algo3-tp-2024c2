@@ -15,4 +15,7 @@ public abstract class Elemento {
     }
 
     public abstract void ubicarElemento(Tablero tablero);
+
+    //public abstract void movimientoLaser(Laser laser);
+
 }

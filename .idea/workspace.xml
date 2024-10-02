@@ -5,20 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="85f88356-206a-4fa2-9ec7-d173872ad934" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Bloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bloque.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BloqueCristal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BloqueCristal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BloqueEspejo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BloqueEspejo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BloqueOpacoFijo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BloqueOpacoFijo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BloqueOpacoMovil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BloqueOpacoMovil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BloqueVidrio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BloqueVidrio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Coordenada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Coordenada.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Elemento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Elemento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/EmisorLaser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EmisorLaser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Laser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Laser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Nivel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Nivel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Piso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Piso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Tablero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interactuarConLaser.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,18 +45,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/beltranmalbran/Desktop/algo3-tp-2024c2&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/beltranmalbran/Desktop/algo3-tp-2024c2",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />

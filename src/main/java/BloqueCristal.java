@@ -1,4 +1,4 @@
-public class BloqueCristal extends Bloque implements interactuarConLaser {
+public class BloqueCristal extends Bloque {
 
     public BloqueCristal(Coordenada posicion) {
         super(new Piso(posicion) , "cristal");

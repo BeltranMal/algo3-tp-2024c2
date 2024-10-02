@@ -22,9 +22,8 @@ public class Piso extends Elemento{
     }
 
     public void removerBloque() {
-
-        this.bloque = null;
         this.bloque.setPiso(null);
+        this.bloque = null;
     }
 
 }

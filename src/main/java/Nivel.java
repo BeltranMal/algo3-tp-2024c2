@@ -36,6 +36,7 @@ public class Nivel {
             linea = reader.readLine(); // Leer la siguiente línea
             cantidadColumnas.add(linea.length());
         }
+        Elemento[][] grilla = new Elemento[filas][Collections.max(cantidadColumnas)];
 
         this.tablero = new Tablero(filas, Collections.max(cantidadColumnas));
         for (int i = 0; i < filas; i++) {

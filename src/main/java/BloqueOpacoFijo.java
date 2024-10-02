@@ -1,4 +1,4 @@
-public class BloqueOpacoFijo extends Bloque implements interactuarConLaser {
+public class BloqueOpacoFijo extends Bloque {
 
     public BloqueOpacoFijo(Coordenada coordenada) {
         super(new Piso(coordenada),"opacoFijo");

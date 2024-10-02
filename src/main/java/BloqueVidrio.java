@@ -1,4 +1,4 @@
-public class BloqueVidrio extends Bloque implements interactuarConLaser {
+public class BloqueVidrio extends Bloque {
     public BloqueVidrio(Coordenada posicion) {
         super(new Piso(posicion), "vidrio");
     }
