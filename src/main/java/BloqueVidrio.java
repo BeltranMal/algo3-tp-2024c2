@@ -1,6 +1,6 @@
 public class BloqueVidrio extends Bloque {
-    public BloqueVidrio(Coordenada posicion) {
-        super(new Piso(posicion), "vidrio");
+    public BloqueVidrio(Piso piso) {
+        super(piso, "vidrio");
     }
 
     @Override
@@ -14,7 +14,7 @@ public class BloqueVidrio extends Bloque {
 
     public Laser comportamiento1(String direccion, Laser laser) {
 
-        laser.setDireccion(laser.reflejarDireccion(direccion));
+        laser.setDireccion(laser.reflejarDireccion(direccion, this.getPosicion()));
 
         Coordenada nuevaCoordenada = laser.cambioPosicion(this.getPosicion(), laser.getDireccion());
         laser.setPosicion(nuevaCoordenada);

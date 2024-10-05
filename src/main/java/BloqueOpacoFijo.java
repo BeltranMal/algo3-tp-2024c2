@@ -1,7 +1,7 @@
 public class BloqueOpacoFijo extends Bloque {
 
-    public BloqueOpacoFijo(Coordenada coordenada) {
-        super(new Piso(coordenada),"opacoFijo");
+    public BloqueOpacoFijo(Piso piso) {
+        super(piso,"opacoFijo");
     }
 
     @Override

@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="85f88356-206a-4fa2-9ec7-d173872ad934" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/LaserGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Bloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bloque.java" afterDir="false" />
@@ -13,11 +14,23 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/BloqueOpacoFijo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BloqueOpacoFijo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BloqueOpacoMovil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BloqueOpacoMovil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BloqueVidrio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BloqueVidrio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Elemento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Elemento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/EmisorLaser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EmisorLaser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Laser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Laser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Nivel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Nivel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Objetivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Objetivo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Piso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Piso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interactuarConLaser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Tablero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Bloque.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/BloqueCristal.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/BloqueCristal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/BloqueEspejo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/BloqueEspejo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/BloqueOpacoFijo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/BloqueOpacoFijo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/BloqueOpacoMovil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/BloqueOpacoMovil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/BloqueVidrio.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/BloqueVidrio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Nivel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Nivel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Piso.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Tablero.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +47,11 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JavaAutoRunManager">
+    <enabled-run-configurations>
+      <run-configuration type="MavenRunConfiguration" name="Logica [javafx:run]" />
+    </enabled-run-configurations>
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -47,7 +65,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.LaserGame.executor": "Debug",
     "Application.Main.executor": "Run",
+    "Application.mAIN.executor": "Debug",
+    "Maven.Logica [javafx:run].executor": "Run",
+    "Maven.Logica [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
@@ -58,9 +80,23 @@
     "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Maven.Logica [javafx:run]">
+    <configuration name="LaserGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="LaserGame" />
+      <module name="Logica" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Logica" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="mAIN" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="mAIN" />
       <module name="Logica" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -79,9 +115,42 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Logica [javafx:run]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="javafx:run" />
+              </list>
+            </option>
+            <option name="multimoduleDir" />
+            <option name="pomFileName" value="pom.xml" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Maven.Logica [javafx:run]" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.mAIN" />
+        <item itemvalue="Application.LaserGame" />
       </list>
     </recent_temporary>
   </component>

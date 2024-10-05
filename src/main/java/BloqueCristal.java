@@ -1,7 +1,7 @@
 public class BloqueCristal extends Bloque {
 
-    public BloqueCristal(Coordenada posicion) {
-        super(new Piso(posicion) , "cristal");
+    public BloqueCristal(Piso piso) {
+        super(piso , "cristal");
     }
 
     @Override

@@ -16,14 +16,15 @@ public class Piso extends Elemento{
     }
 
     public void colocarBloque(Bloque nuevoBloque) {
-
         this.bloque = nuevoBloque;
         nuevoBloque.setPiso(this);
     }
 
     public void removerBloque() {
-        this.bloque.setPiso(null);
-        this.bloque = null;
+        if (this.bloque != null) {
+            this.bloque.setPiso(null);
+            this.bloque = null;
+        }
     }
 
 }

@@ -15,7 +15,7 @@ public class Nivel {
 
 
 
-    private void cargarNivel(String nombreNivel) throws IOException {
+    public void cargarNivel(String nombreNivel) throws IOException {
 
         ClassLoader classLoader = getClass().getClassLoader();
         BufferedReader reader = new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream("TP1 TB025 levels/" + nombreNivel + ".dat")));
@@ -55,8 +55,8 @@ public class Nivel {
 
         while (linea != null) {
             String[] partes = linea.split(" ");
-            Elemento elemento = interpretarParte2(partes);
-            tablero.inicializarGrilla(elemento);
+            //Elemento elemento = interpretarParte2(partes);
+          //  tablero.inicializarGrilla(elemento);
             linea = reader.readLine();
         }
         tablero.imprimirTablero();
@@ -67,24 +67,41 @@ public class Nivel {
     private Elemento interpretarParte2(String[] partes) {
         int y = Integer.parseInt(partes[1]);
         int x = Integer.parseInt(partes[2]);
+
+
+        System.out.println("posicion: " + x + " " + y + " para " +  partes[0]);
+
         Coordenada posicion = new Coordenada(x, y);
         return switch (partes[0]) {
-            case "E" -> new EmisorLaser(posicion, partes[3]);
+            case "E" -> new EmisorLaser(posicion, partes[3],tablero);
             case "G" -> new Objetivo(posicion);
             default -> null;
         };
-
     }
 
     private Elemento interpretarCaracterParte1(char elemento, Coordenada posicion) {
+        Piso piso = new Piso(posicion);
         return switch (elemento) {
-            case '.' -> new Piso(posicion);
-            case 'F' -> new BloqueOpacoFijo(posicion);
-            case 'B' -> new BloqueOpacoMovil(posicion);
-            case 'R' -> new BloqueEspejo(posicion);
-            case 'G' -> new BloqueVidrio(posicion);
-            case 'C' -> new BloqueCristal(posicion);
+            case '.' -> piso;
+            case 'F' -> new BloqueOpacoFijo(piso);
+            case 'B' -> new BloqueOpacoMovil(piso);
+            case 'R' -> new BloqueEspejo(piso);
+            case 'G' -> new BloqueVidrio(piso);
+            case 'C' -> new BloqueCristal(piso);
             default -> null; // Celda vacía
         };
     }
+    public Tablero devolverTablero() {
+        return tablero;
+    }
+
+    public boolean juegoGanado() {
+        // lista de objetivos -> si el laser alguna vez paso por encima de todos los objetivos -> return true
+
+        return false;
+
+    }
+
+
+
 }

@@ -1,6 +1,6 @@
 public class BloqueOpacoMovil extends Bloque {
-    public BloqueOpacoMovil(Coordenada posicion) {
-        super(new Piso(posicion), "opacoMovil");
+    public BloqueOpacoMovil(Piso piso) {
+        super(piso, "opacoMovil");
     }
 
     @Override

@@ -2,10 +2,11 @@ public class EmisorLaser extends Elemento {
     private final String direccion;
 
 
-    public EmisorLaser(Coordenada posicion, String direccion) {
+    public EmisorLaser(Coordenada posicion, String direccion, Tablero tablero) {
         super(posicion);
         this.direccion = direccion;
-        //dispararLaser();
+        dispararLaser(tablero);
+     //   System.out.println("aaaaaaaaaaaaaa: " + posicion.x + " " + posicion.y);
     }
 
     @Override
@@ -16,11 +17,11 @@ public class EmisorLaser extends Elemento {
     public String getDireccion() {
         return direccion;
     }
-/*
-    public void dispararLaser() {
+
+    public void dispararLaser(Tablero tablero) {
         Laser laser = new Laser(this, tablero);
         laser.moverLaser();
     }
 
- */
+
 }
