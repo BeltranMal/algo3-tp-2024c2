@@ -6,7 +6,8 @@ public class BloqueOpacoFijo extends Bloque {
 
     @Override
     public void movimientoLaser(Laser laser) {
-        laser.setDireccion(laser.getDireccion());
+        laser.setPosicion(new Coordenada(-1,-1));
+        laser.setDireccion(laser.getDireccion().getLast());
     }
 
 }

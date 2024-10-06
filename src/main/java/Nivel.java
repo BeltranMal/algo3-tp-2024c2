@@ -3,22 +3,19 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 public class Nivel {
     Tablero tablero;
-
-
+    ArrayList<Elemento> hola = new ArrayList<Elemento>();
     public Nivel(String nombreNivel) throws IOException {
         cargarNivel(nombreNivel);
     }
 
-
-
-
     public void cargarNivel(String nombreNivel) throws IOException {
 
         ClassLoader classLoader = getClass().getClassLoader();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream("TP1 TB025 levels/" + nombreNivel + ".dat")));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(classLoader.getResourceAsStream("TP1 TB025 levels/" + nombreNivel + ".dat"))));
 
         String linea = reader.readLine();
 
@@ -36,7 +33,6 @@ public class Nivel {
             linea = reader.readLine(); // Leer la siguiente línea
             cantidadColumnas.add(linea.length());
         }
-        Elemento[][] grilla = new Elemento[filas][Collections.max(cantidadColumnas)];
 
         this.tablero = new Tablero(filas, Collections.max(cantidadColumnas));
         for (int i = 0; i < filas; i++) {
@@ -55,21 +51,20 @@ public class Nivel {
 
         while (linea != null) {
             String[] partes = linea.split(" ");
-            //Elemento elemento = interpretarParte2(partes);
-          //  tablero.inicializarGrilla(elemento);
+            Elemento elemento = interpretarParte2(partes);
+            hola.add(elemento);
             linea = reader.readLine();
         }
         tablero.imprimirTablero();
     }
 
-
+    public ArrayList<Elemento> EyO(){
+        return hola;
+    }
 
     private Elemento interpretarParte2(String[] partes) {
         int y = Integer.parseInt(partes[1]);
         int x = Integer.parseInt(partes[2]);
-
-
-        System.out.println("posicion: " + x + " " + y + " para " +  partes[0]);
 
         Coordenada posicion = new Coordenada(x, y);
         return switch (partes[0]) {
@@ -96,9 +91,15 @@ public class Nivel {
     }
 
     public boolean juegoGanado() {
-        // lista de objetivos -> si el laser alguna vez paso por encima de todos los objetivos -> return true
+        boolean ganado = false;
+        // recorrer hola y fijarse si todos los objetivos de hola tienen completo == true
+        for (Elemento e : hola) {
+            if (e instanceof Objetivo) {
+                ganado = !((Objetivo) e).Alcanzado();
+            }
+        }
 
-        return false;
+        return ganado;
 
     }
 

@@ -5,6 +5,7 @@ public class BloqueOpacoMovil extends Bloque {
 
     @Override
     public void movimientoLaser(Laser laser) {
-        laser.setDireccion(laser.getDireccion());
+        laser.setPosicion(this.getPosicion());
+        laser.setDireccion(laser.getDireccion().getLast());
     }
 }

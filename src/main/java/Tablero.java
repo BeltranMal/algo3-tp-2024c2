@@ -4,13 +4,10 @@ public class Tablero {
 
 
     public Tablero(int filas, int columnas) {
-        filas = filas * 2 + 1;
-        columnas = columnas * 2 + 1;
+        filas = filas * 2 +1;
+        columnas = columnas * 2 +1 ;
         this.grilla = new Elemento[filas][columnas];
     }
-
-
-
 
     public Elemento obtenerElemento(Coordenada coordenada){
 
@@ -20,7 +17,6 @@ public class Tablero {
 
             Elemento elemento = grilla[x][y];
             if((elemento instanceof Objetivo || elemento instanceof EmisorLaser)) {
-                System.out.println("se agarro un emisor laser en " + x + " " + y);
                 return elemento;
             }
         }
@@ -57,7 +53,6 @@ public class Tablero {
         int y = coordenada.y;
         grilla[x][y] = elemento;
     }
-
 
     public void actualizarTablero(Coordenada coordenadaNueva, Bloque bloque) {// para mover el bloque'
 

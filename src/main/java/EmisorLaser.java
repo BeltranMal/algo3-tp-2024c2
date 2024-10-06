@@ -6,7 +6,6 @@ public class EmisorLaser extends Elemento {
         super(posicion);
         this.direccion = direccion;
         dispararLaser(tablero);
-     //   System.out.println("aaaaaaaaaaaaaa: " + posicion.x + " " + posicion.y);
     }
 
     @Override

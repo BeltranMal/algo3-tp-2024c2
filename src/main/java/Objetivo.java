@@ -10,14 +10,14 @@ public class Objetivo extends Elemento {
         tablero.agregarElemento(this, this.getPosicion());
     }
 
-    public boolean isCompleto() {
+    public boolean Alcanzado() {
         return completo;
     }
 
-    public void setCompleto(boolean completo, Laser laser) {
-        if (laser.getPosicion().equals(this.getPosicion())) {
-            this.completo = true;
-        }
+    public void setCompleto() {
+
+        this.completo = true;
+
 
     }
 
