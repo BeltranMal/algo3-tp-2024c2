@@ -10,12 +10,10 @@ public abstract class Elemento {
         return this.coordenada;
     }
 
-    protected void setPosicion(Coordenada posicion) {
+    public void setPosicion(Coordenada posicion) {
         this.coordenada = posicion;
     }
 
     public abstract void ubicarElemento(Tablero tablero);
-
-    //public abstract void movimientoLaser(Laser laser);
 
 }

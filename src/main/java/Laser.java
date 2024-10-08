@@ -2,100 +2,121 @@ import java.util.ArrayList;
 
 public class Laser {
     private Coordenada posicion;
-    private final Coordenada posicionAnterior;
+    private Coordenada posicionAnterior;
     private ArrayList<String> direccion = new ArrayList<>();
     private final Tablero tablero;
 
 
-    public Laser(EmisorLaser origen, Tablero tablero){
-        this.posicion = origen.getPosicion();
+    public Laser(EmisorLaser origen, Tablero tablero) {
+
+        this.posicion = origen.getPosicion().convertirCoordenada();
         direccion.add(origen.getDireccion());
         this.tablero = tablero;
-        int x =( origen.getPosicion().x + 1) / 2 - 1;
-        int y = Math.max(((origen.getPosicion().y + 1) / 2 - 1), 0);
-        this.posicionAnterior = new Coordenada(x, y);
+        this.posicionAnterior = origen.getPosicion().convertirCoordenada();
     }
 
-    public Coordenada getPosicion(){
-        return posicion;
-    }
 
-    public void setPosicion(Coordenada posicion){
+    public void setPosicion(Coordenada posicion) {
         this.posicion = posicion;
     }
 
-    public void setDireccion(String direccion1){
-        direccion.add(direccion1);
+    public void setDireccion(String direccionElemento) {
+        direccion.add(direccionElemento);
     }
 
-    public ArrayList<Coordenada> moverLaser(){
+    private boolean nuevaPosicionValida(Coordenada nuevaPosicion) {
+        Coordenada ubicacion = new Coordenada(nuevaPosicion.x, nuevaPosicion.y).ubicarImpar();
+        return tablero.posicionValida(ubicacion);
+    }
+
+    private Elemento buscarBloque() {
+        int[] dx = {-1, 1, 0, 0};
+        int[] dy = {0, 0, 1, -1};
+        Coordenada[] direcciones = {
+                new Coordenada(posicion.x + dx[0], posicion.y + dy[0]),
+                new Coordenada(posicion.x + dx[1], posicion.y + dy[1]),
+                new Coordenada(posicion.x + dx[2], posicion.y + dy[2]),
+                new Coordenada(posicion.x + dx[3], posicion.y + dy[3])
+        };
+
+        for (Coordenada coordenada : direcciones) {
+            if (nuevaPosicionValida(coordenada) && tablero.obtenerElemento(coordenada) instanceof Bloque) {
+                return tablero.obtenerElemento(coordenada);
+            }
+        }
+
+        return tablero.obtenerElemento(this.posicion);
+    }
+
+    public ArrayList<Coordenada> moverLaser() {
         ArrayList<Coordenada> ruta = new ArrayList<>();
-
-        System.out.println("direcciones " + direccion);
-        ruta.add(posicion);
-        System.out.println("agregue ruta numero: " + ruta.size());
+        ruta.add(posicionAnterior);
         boolean movimiento = true;
-        while (movimiento){
+
+        while (movimiento) {
+
             if (tablero.posicionValida(this.posicion)) {
-                System.out.println("posiciion inicial: " + posicion.x + " " + posicion.y);
-
-                Elemento elemento = tablero.obtenerElemento(this.posicion);
-
+                Elemento elemento = buscarBloque();
 
                 if (elemento instanceof Bloque bloque) {
+                    direccion.add(this.direccion.getLast());
                     bloque.movimientoLaser(this);
-                    ruta.add(posicion);
-                    System.out.println("agregue ruta numero: " + ruta.size());
-                    System.out.println(bloque);
+
+                    if (nuevaPosicionValida(posicion)) {
+                        ruta.add(this.posicion);
+                        direccion.add(this.direccion.getLast());
+                        posicionAnterior = this.posicion;
+                    } else {
+                        movimiento = false;
+                    }
                 } else if (elemento instanceof Objetivo objetivo) {
                     objetivo.setCompleto();
 
                 } else {
-                    setPosicion(continuarMovimiento());
-                    if (tablero.posicionValida(this.posicion)) {
-                        ruta.add(posicion);
-                        System.out.println("agregue ruta numero: " + ruta.size());
+                    Coordenada nuevaPosicion = continuarMovimiento();
+                    if (nuevaPosicionValida(nuevaPosicion)) {
+
+                        ruta.add(this.posicion);
+                        this.posicion = nuevaPosicion;
+                        ruta.add(this.posicion);
                         direccion.add(this.direccion.getLast());
-                        System.out.println("agregue direccion numero: " + direccion.size());
-                        System.out.println("posiciion aaaaaaaaa: " + posicion.x + " " + posicion.y);
+                        posicionAnterior = this.posicion;
+
+                    } else {
+                        movimiento = false;
                     }
                 }
-            }
-            else {
+            } else {
                 movimiento = false;
             }
         }
-        System.out.println("cantidad de direcciones: " + direccion.size());
-        System.out.println("cantidad de posiciones: " + ruta.size());
+
         return ruta;
     }
 
-    private Coordenada continuarMovimiento(){
-        Coordenada posLas = this.posicion;
+    private Coordenada continuarMovimiento() {
+
         String direccion = this.direccion.getLast();
         return switch (direccion) {
-            case "NE" -> new Coordenada((posLas.x - 1), posLas.y + 1);
-            case "SE" -> new Coordenada(posLas.x + 1, posLas.y + 1);
-            case "SW" -> new Coordenada(posLas.x + 1, posLas.y - 1);
-            case "NW" -> new Coordenada(posLas.x - 1, posLas.y - 1);
-            case "H" -> new Coordenada(posLas.x, posLas.y + 1);
+            case "NE" -> new Coordenada((posicion.x - 1), posicion.y + 1);
+            case "SE" -> new Coordenada(posicion.x + 1, posicion.y + 1);
+            case "SW" -> new Coordenada(posicion.x + 1, posicion.y - 1);
+            case "NW" -> new Coordenada(posicion.x - 1, posicion.y - 1);
+            case "H" -> new Coordenada(posicion.x, posicion.y + 1);
             default -> this.posicion;
         };
-
     }
 
     public Coordenada cambioPosicion(Coordenada posicionElemento, String direccion) {
-        int norte = (posicionElemento.x + 1) /2 -1 ;
+        int norte = (posicionElemento.x + 1) / 2 - 1;
         int este = (posicionElemento.y + 1) / 2 - 1;
         int sur = norte + 1;
         int oeste = este - 1;
 
-
-
         return switch (direccion) {
             case "NE" -> new Coordenada((norte - 1), este + 1);
             case "SE" -> new Coordenada(sur, este + 1);
-            case "SW" -> new Coordenada(sur, oeste );
+            case "SW" -> new Coordenada(sur, oeste);
             case "NW" -> new Coordenada(norte - 1, oeste);
             case "H" -> new Coordenada(posicionElemento.x, posicionElemento.y + 2);
             default -> this.posicion;
@@ -106,25 +127,17 @@ public class Laser {
         return direccion;
     }
 
+
     public String reflejarDireccion(String direccion, Coordenada posicionBloque) {
-        int x_bloque = (posicionBloque.x + 1) /2 - 1;
-        int y_bloque = (posicionBloque.y + 1) / 2 - 1; // 3,5
 
-     // si pegamos al costado estamos a una fila y a dos columnas de distancia
-        // si pegamos arriba estamos a dos filas y una columna de distancia
-
-
-        System.out.println("posicion anterior: " + posicionAnterior.x + " " + posicionAnterior.y);
-        System.out.println("posicion bloque: " + x_bloque + " " + y_bloque);
-        int dif_x = Math.abs(posicionAnterior.x - x_bloque); // si esto es 1 >=-> ppegamos al costado si es 2 pegamos arriba
+        int x_bloque = (posicionBloque.x + 1) / 2 - 1;
+        int y_bloque = (posicionBloque.y + 1) / 2 - 1;
+        int dif_x = Math.abs(posicionAnterior.x - x_bloque);
         int dif_y = Math.abs(posicionAnterior.y - y_bloque);
 
-        // pasarla a una funcion booleana para ver si vamos a pegar en un bloque o no
+        if (dif_y == 0) {
 
-        System.out.println("dif x: " + dif_x);
-        System.out.println("dif y: " + dif_y);
-
-        if (dif_x == 2 && dif_y == 1){
+            posicionAnterior = new Coordenada(x_bloque, y_bloque);
             return switch (direccion) {
                 case "NE" -> "SE";
                 case "SE" -> "NE";
@@ -132,8 +145,9 @@ public class Laser {
                 case "NW" -> "SW";
                 default -> "H";
             };
-        }
-        else if (dif_x == 1 && dif_y == 2){
+        } else if (dif_x == 1 && dif_y == 1) {
+
+            posicionAnterior = new Coordenada(x_bloque, y_bloque);
             return switch (direccion) {
                 case "NE" -> "NW";
                 case "SE" -> "SW";
@@ -143,11 +157,6 @@ public class Laser {
             };
         }
 
-        // reflejar el láser según la dirección
-    return "H";
+        return "H";
     }
-
-    }
-
-
-// error en logica. si viene el emisor del noroeste se comporta como cambio posicion. sino hay que hacer un metodo que contenga la direccion anterior para que si va al noroeste cuando venga del sureste reste en las filas y sume en las columnas .
+}

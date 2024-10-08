@@ -6,18 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="85f88356-206a-4fa2-9ec7-d173872ad934" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Bloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bloque.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BloqueCristal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BloqueCristal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BloqueEspejo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BloqueEspejo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BloqueOpacoFijo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BloqueOpacoFijo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BloqueOpacoMovil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BloqueOpacoMovil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BloqueVidrio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BloqueVidrio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Coordenada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Coordenada.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Elemento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Elemento.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/EmisorLaser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EmisorLaser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Laser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Laser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/LaserGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/LaserGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Nivel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Nivel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Objetivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Objetivo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Tablero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Bloque.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Bloque.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/BloqueEspejo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/BloqueEspejo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/BloqueOpacoMovil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/BloqueOpacoMovil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Coordenada.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Coordenada.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Nivel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Nivel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Tablero.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Tablero.class" afterDir="false" />
     </list>

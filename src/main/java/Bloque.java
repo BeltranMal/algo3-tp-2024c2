@@ -3,24 +3,22 @@ public abstract class Bloque extends Elemento {
     private Piso piso;
 
     public Bloque(Piso piso, String bloque) {
-        super(piso.getPosicion()); // llama al constructor de elementos
+        super(piso.getPosicion());
         this.bloque = bloque;
         this.piso = piso;
     }
 
-    public Coordenada moverBloque(Coordenada posicion_nueva){
-        Coordenada posicion_antigua = this.getPosicion();
-        if (NoEsFijo()){
-            int x = (posicion_nueva.x + 1) * 2 - 1;
-            int y = (posicion_nueva.y + 1) * 2 - 1;
-            posicion_nueva = new Coordenada(x, y);
-            this.setPosicion(posicion_nueva);
+    public Coordenada moverBloque(Coordenada posicionNueva){
+        Coordenada posicionAntigua = this.getPosicion();
+        if (noEsFijo()){
+            posicionNueva = posicionNueva.ubicarImpar();
+            this.setPosicion(posicionNueva);
 
         }
         else{
             return new Coordenada(-1,-1);
         }
-        return posicion_antigua;
+        return posicionAntigua;
     }
 
     public void setPiso(Piso piso){
@@ -35,7 +33,7 @@ public abstract class Bloque extends Elemento {
         tablero.agregarElemento(this, piso.getPosicion());
     }
 
-    public boolean NoEsFijo() {
+    public boolean noEsFijo() {
         return !bloque.equals("opacoFijo");
     }
 }

@@ -7,7 +7,8 @@ import java.util.Objects;
 
 public class Nivel {
     Tablero tablero;
-    ArrayList<Elemento> hola = new ArrayList<Elemento>();
+
+    ArrayList<Elemento> emisoryObjetivo = new ArrayList<>();
     public Nivel(String nombreNivel) throws IOException {
         cargarNivel(nombreNivel);
     }
@@ -16,65 +17,50 @@ public class Nivel {
 
         ClassLoader classLoader = getClass().getClassLoader();
         BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(classLoader.getResourceAsStream("TP1 TB025 levels/" + nombreNivel + ".dat"))));
-
         String linea = reader.readLine();
 
         ArrayList<String> renglones = new ArrayList<>();
         ArrayList<Integer> cantidadColumnas = new ArrayList<>();
-
-        int filas = 0;
-        int columnas, centro_x, centro_y;
         cantidadColumnas.add(linea.length());
 
-        // Leer el archivo línea por línea
         while (!linea.trim().isEmpty()) {
-            renglones.add(linea); // Almacenar la línea
-            filas++; // Incrementar el contador de filas
-            linea = reader.readLine(); // Leer la siguiente línea
+            renglones.add(linea);
+
+            linea = reader.readLine();
             cantidadColumnas.add(linea.length());
         }
 
+        int filas = renglones.size();
         this.tablero = new Tablero(filas, Collections.max(cantidadColumnas));
-        for (int i = 0; i < filas; i++) {
-            columnas = cantidadColumnas.get(i);
-            for (int j = 0; j < columnas; j++) {
-
-                centro_x = (i + 1) * 2 - 1;
-                centro_y = (j + 1) * 2 - 1;
-                Coordenada posicion = new Coordenada(centro_x, centro_y);
-                char caracter = renglones.get(i).charAt(j);
-                Elemento elemento = interpretarCaracterParte1(caracter, posicion); // solo primera parte
-                tablero.inicializarGrilla(elemento);
-            }
-        }
+        tablero.generarTablero(cantidadColumnas,renglones,this );
         linea = reader.readLine();
 
         while (linea != null) {
             String[] partes = linea.split(" ");
-            Elemento elemento = interpretarParte2(partes);
-            hola.add(elemento);
+            Elemento elemento = interpretarElementosEspeciales(partes);
+            emisoryObjetivo.add(elemento);
             linea = reader.readLine();
         }
-        tablero.imprimirTablero();
+
     }
 
-    public ArrayList<Elemento> EyO(){
-        return hola;
+    public ArrayList<Elemento> emisoresyObjetivos(){
+        return emisoryObjetivo;
     }
 
-    private Elemento interpretarParte2(String[] partes) {
-        int y = Integer.parseInt(partes[1]);
-        int x = Integer.parseInt(partes[2]);
+    private Elemento interpretarElementosEspeciales(String[] partes) {
+        int y = (Integer.parseInt(partes[1]));
+        int x = (Integer.parseInt(partes[2]));
+        Coordenada posicion = new Coordenada(x,y);
 
-        Coordenada posicion = new Coordenada(x, y);
         return switch (partes[0]) {
-            case "E" -> new EmisorLaser(posicion, partes[3],tablero);
+            case "E" -> new EmisorLaser(posicion, partes[3]);
             case "G" -> new Objetivo(posicion);
             default -> null;
         };
     }
 
-    private Elemento interpretarCaracterParte1(char elemento, Coordenada posicion) {
+    public Elemento interpretarElementosGrilla(char elemento, Coordenada posicion) {
         Piso piso = new Piso(posicion);
         return switch (elemento) {
             case '.' -> piso;
@@ -83,7 +69,7 @@ public class Nivel {
             case 'R' -> new BloqueEspejo(piso);
             case 'G' -> new BloqueVidrio(piso);
             case 'C' -> new BloqueCristal(piso);
-            default -> null; // Celda vacía
+            default -> null;
         };
     }
     public Tablero devolverTablero() {
@@ -92,10 +78,9 @@ public class Nivel {
 
     public boolean juegoGanado() {
         boolean ganado = false;
-        // recorrer hola y fijarse si todos los objetivos de hola tienen completo == true
-        for (Elemento e : hola) {
+        for (Elemento e : emisoryObjetivo) {
             if (e instanceof Objetivo) {
-                ganado = !((Objetivo) e).Alcanzado();
+               ganado = ((Objetivo) e).Alcanzado();
             }
         }
 

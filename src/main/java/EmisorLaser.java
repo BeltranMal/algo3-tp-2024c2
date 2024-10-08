@@ -2,25 +2,18 @@ public class EmisorLaser extends Elemento {
     private final String direccion;
 
 
-    public EmisorLaser(Coordenada posicion, String direccion, Tablero tablero) {
+    public EmisorLaser(Coordenada posicion, String direccion) {
         super(posicion);
         this.direccion = direccion;
-        dispararLaser(tablero);
     }
 
     @Override
     public void ubicarElemento(Tablero tablero) {
-        tablero.agregarElemento(this, this.getPosicion());
+        // no va en el tablero
     }
 
     public String getDireccion() {
         return direccion;
     }
-
-    public void dispararLaser(Tablero tablero) {
-        Laser laser = new Laser(this, tablero);
-        laser.moverLaser();
-    }
-
 
 }

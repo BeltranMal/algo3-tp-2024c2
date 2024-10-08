@@ -17,13 +17,6 @@ public class Objetivo extends Elemento {
     public void setCompleto() {
 
         this.completo = true;
-
-
     }
-
-    /*
-    si laser en la misma posicion que objetivo entonces Completo = True -> metodo publico
-    si todos los objetivos = true entonces gano -> se haria en nivel
-     */
 
 }
