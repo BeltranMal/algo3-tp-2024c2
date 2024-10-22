@@ -88,8 +88,6 @@ public class LaserGame extends Application {
         dibujarLaser(gridPane);
     }
 
-
-
     private void dibujarEmisorObjetivo(GridPane gridPane) {
         Pane circlePane = new Pane();
         circlePane.setMouseTransparent(true);
@@ -128,7 +126,7 @@ public class LaserGame extends Application {
             dibujarRuta(laser, laserPane);
         }
 
-        while (cantidadLaseres != nivel.getLaseresActivos().size()) { // se crea un laser nuevo mienras el otro se esta moviendo
+        while (cantidadLaseres != nivel.getLaseresActivos().size()) {
             laseresCopy = new ArrayList<>(nivel.getLaseresActivos());
             for (Laser laser : laseresCopy) {
                 dibujarRuta(laser, laserPane);
@@ -182,8 +180,6 @@ public class LaserGame extends Application {
             tableroRender.setClip(clip);
         }
     }
-
-    // UML
 
     private Paint asignarColor(Elemento elemento) {
         if (elemento instanceof BloqueOpacoFijo) {

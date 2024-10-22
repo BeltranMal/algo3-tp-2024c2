@@ -17,8 +17,6 @@ public enum Direccion {
             SW, SE,
             NW, NE
     );
-
-    // Norte una menos en x y sur una mas
     private static final Map<Direccion, Pair<Integer, Integer>> coordenadasMapHorizontal = Map.of(
             NE, new Pair<>(-1, 0),
             NW, new Pair<>(-1, 0),
