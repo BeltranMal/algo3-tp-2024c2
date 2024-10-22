@@ -1,4 +1,4 @@
-public abstract class Elemento {
+public abstract class Elemento  {
 
     private Coordenada coordenada;
 
@@ -7,13 +7,23 @@ public abstract class Elemento {
     }
 
     public Coordenada getPosicion() {
-        return this.coordenada;
+        return coordenada;
     }
 
     public void setPosicion(Coordenada posicion) {
-        this.coordenada = posicion;
+        coordenada = posicion;
     }
 
-    public abstract void ubicarElemento(Tablero tablero);
+    public  void ubicarElemento(Tablero tablero){
+        tablero.agregarElemento(this, this.getPosicion());
+    }
+
+    public  boolean puedeSerGolpeadoPorLaser(){
+        return true;
+    }
+
+    public  boolean movible(){
+        return false;
+    };
 
 }

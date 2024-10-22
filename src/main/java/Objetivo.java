@@ -7,16 +7,17 @@ public class Objetivo extends Elemento {
 
     @Override
     public void ubicarElemento(Tablero tablero) {
-        tablero.agregarElemento(this, this.getPosicion());
+        // no va en el tablero
     }
 
-    public boolean Alcanzado() {
+    public boolean alcanzado() {
         return completo;
     }
 
-    public void setCompleto() {
 
-        this.completo = true;
+    public void setCompleto(boolean alcanzado) {
+        completo = alcanzado;
     }
+
 
 }

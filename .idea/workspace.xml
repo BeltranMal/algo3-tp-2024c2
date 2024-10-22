@@ -9,6 +9,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/Bloque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bloque.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BloqueCristal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BloqueCristal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BloqueEspejo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BloqueEspejo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BloqueOpacoFijo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BloqueOpacoFijo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BloqueOpacoMovil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BloqueOpacoMovil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BloqueVidrio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BloqueVidrio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Coordenada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Coordenada.java" afterDir="false" />
@@ -18,12 +19,18 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/LaserGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/LaserGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Nivel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Nivel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Objetivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Objetivo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Piso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Piso.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Tablero.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Bloque.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Bloque.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/BloqueCristal.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/BloqueCristal.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/BloqueEspejo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/BloqueEspejo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/BloqueOpacoFijo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/BloqueOpacoFijo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/BloqueOpacoMovil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/BloqueOpacoMovil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/BloqueVidrio.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/BloqueVidrio.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Coordenada.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Coordenada.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Elemento.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Elemento.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Nivel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Nivel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Piso.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Piso.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Tablero.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Tablero.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,6 +42,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -57,23 +66,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.LaserGame.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.mAIN.executor": "Debug",
-    "Maven.Logica [javafx:run].executor": "Run",
-    "Maven.Logica [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/beltranmalbran/Desktop/algo3-tp-2024c2",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.LaserGame.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.mAIN.executor&quot;: &quot;Debug&quot;,
+    &quot;Maven.Logica [javafx:run].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Logica [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/beltranmalbran/Desktop/algo3-tp-2024c2&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Maven.Logica [javafx:run]">
     <configuration name="LaserGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="LaserGame" />
@@ -158,5 +167,15 @@
       <updated>1727132767950</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.util.ConcurrentModificationException" package="java.util" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

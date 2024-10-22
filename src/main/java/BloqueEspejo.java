@@ -1,14 +1,11 @@
 public class BloqueEspejo extends Bloque {
 
-    public BloqueEspejo(Piso piso) {
-        super(piso, "espejo");
+    public BloqueEspejo(Coordenada posicion) {
+        super(posicion);
     }
 
     @Override
-    public void movimientoLaser(Laser laser) {
-        laser.setDireccion(laser.reflejarDireccion(laser.getDireccion().getLast(), this.getPosicion()));
-        Coordenada nuevaCoordenada = laser.cambioPosicion(this.getPosicion(), laser.getDireccion().getLast());
-
-        laser.setPosicion(nuevaCoordenada);
+    public void interaccionLaser(Laser laser) {
+        laser.reflejarMovimiento( this.getPosicion());
     }
 }

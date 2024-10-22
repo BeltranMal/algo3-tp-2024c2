@@ -1,19 +1,18 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
+import javafx.scene.shape.Polyline;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
-
 
 public class LaserGame extends Application {
     private Nivel nivel;
@@ -39,7 +38,7 @@ public class LaserGame extends Application {
 
         for (String level : levels) {
             Button levelButton = new Button(level);
-            levelButton.setOnAction(e -> {
+            levelButton.setOnAction(_ -> {
                 try {
                     generarNivel(level);
                 } catch (IOException ex) {
@@ -53,7 +52,7 @@ public class LaserGame extends Application {
     }
 
     private void generarNivel(String levelName) throws IOException {
-
+        tableroRender.setStyle("-fx-padding: 5;");
         nivel = new Nivel(levelName);
         crearTablero();
 
@@ -61,6 +60,8 @@ public class LaserGame extends Application {
 
     private void crearTablero() {
         tableroRender.getChildren().clear();
+        tableroRender.setDisable(false);
+
         Tablero tableroLogico = nivel.devolverTablero();
         GridPane gridPane = new GridPane();
         gridPane.setHgap(1);
@@ -69,31 +70,122 @@ public class LaserGame extends Application {
         for (int i = 0; i < tableroLogico.getFilas(); i++) {
             for (int j = 0; j < tableroLogico.getColumnas(); j++) {
                 Elemento elemento = tableroLogico.obtenerElemento(new Coordenada(i, j));
-
                 if (elemento != null) {
                     Rectangle celda = new Rectangle(50, 50);
 
-                    if (elemento instanceof Bloque) {
-                        celda.setFill(asignarColor((Bloque) elemento));
-
-                    } else if (elemento instanceof Piso) {
-                        celda.setFill(Color.LIGHTGRAY);
-                    }
+                    celda.setFill(asignarColor(elemento));
 
                     int finalJ = j;
                     int finalI = i;
 
-                    celda.setOnMouseClicked(e -> manejarClickCelda(finalI, finalJ, tableroLogico));
+                    celda.setOnMouseClicked(_ -> manejarClickCelda(finalI, finalJ, tableroLogico));
                     gridPane.add(celda, j, i);
                 }
-
             }
         }
         tableroRender.getChildren().add(gridPane);
         dibujarEmisorObjetivo(gridPane);
+        dibujarLaser(gridPane);
     }
 
-    private Paint asignarColor(Bloque elemento) {
+
+
+    private void dibujarEmisorObjetivo(GridPane gridPane) {
+        Pane circlePane = new Pane();
+        circlePane.setMouseTransparent(true);
+        gridPane.add(circlePane, 0, 0, gridPane.getColumnCount(), gridPane.getRowCount());
+
+        for (Elemento elementoEspecial : nivel.elementosEspeciales()) {
+            Circle circulo = new Circle(5);
+            Coordenada pos = elementoEspecial.getPosicion();
+
+            if (!elementoEspecial.puedeSerGolpeadoPorLaser()) {
+                EmisorLaser emisor = (EmisorLaser) elementoEspecial;
+                circulo.setFill(Color.RED);
+                emisor.dispararLaser(nivel);
+            }
+            else {
+                Objetivo objetivo = (Objetivo) elementoEspecial;
+                circulo.setStroke(Color.RED);
+                circulo.setFill(Color.TRANSPARENT);
+                objetivo.setCompleto(false);
+            }
+            circulo.setLayoutX(pos.y *  25);
+            circulo.setLayoutY(pos.x *  25);
+            circlePane.getChildren().add(circulo);
+        }
+    }
+
+    private void dibujarLaser(GridPane gridPane) {
+        Pane laserPane = new Pane();
+        laserPane.setMouseTransparent(true);
+        gridPane.add(laserPane, 0, 0, gridPane.getColumnCount(), gridPane.getRowCount());
+
+        ArrayList<Laser> laseresCopy = new ArrayList<>(nivel.getLaseresActivos());
+        int cantidadLaseres = laseresCopy.size();
+
+        for (Laser laser : laseresCopy) {
+            dibujarRuta(laser, laserPane);
+        }
+
+        while (cantidadLaseres != nivel.getLaseresActivos().size()) { // se crea un laser nuevo mienras el otro se esta moviendo
+            laseresCopy = new ArrayList<>(nivel.getLaseresActivos());
+            for (Laser laser : laseresCopy) {
+                dibujarRuta(laser, laserPane);
+            }
+            cantidadLaseres++;
+        }
+    }
+
+        private void dibujarRuta(Laser laser, Pane laserPane) {
+            ArrayList<Coordenada> laserPath = laser.moverLaser();
+            nivel.objetivosAlcanzados(laserPath);
+            Polyline polyline = new Polyline();
+            polyline.setStroke(Color.RED);
+            polyline.setStrokeWidth(2);
+
+            for (Coordenada coordenada : laserPath) {
+                double x = coordenada.y * 25;
+                double y = coordenada.x * 25;
+                polyline.getPoints().addAll(x, y);
+            }
+            laserPane.getChildren().add(polyline);
+        }
+
+    private void manejarClickCelda(int i, int j, Tablero tablero_logico) {
+        Coordenada coordenadaActual = new Coordenada(i, j);
+        Elemento elementoActual = tablero_logico.obtenerElemento(coordenadaActual);
+
+        if (elementoActual.puedeSerGolpeadoPorLaser()) {
+
+            if (elementoActual.movible() && posicionSeleccionada == null ) {
+                posicionSeleccionada = coordenadaActual;
+            }
+        }
+        else if (posicionSeleccionada != null) {
+            nivel.limpiarLaseres();
+            Bloque bloque = (Bloque) tablero_logico.obtenerElemento(posicionSeleccionada);
+            tablero_logico.actualizarTablero(coordenadaActual, bloque);
+            crearTablero();
+            posicionSeleccionada = null;
+        }
+
+        juegoGanado();
+
+    }
+
+    private void juegoGanado() {
+        if (nivel.juegoGanado()) {
+            tableroRender.setDisable(true);
+            tableroRender.setStyle("-fx-background-color: lightgreen; -fx-padding: 10;");
+            Rectangle clip = new Rectangle(500, 500);
+            tableroRender.setClip(clip);
+        }
+    }
+
+    // UML
+
+    private Paint asignarColor(Elemento elemento) {
         if (elemento instanceof BloqueOpacoFijo) {
             return Color.BLACK;
         } else if (elemento instanceof BloqueOpacoMovil) {
@@ -101,91 +193,16 @@ public class LaserGame extends Application {
         } else if (elemento instanceof BloqueEspejo) {
             return Color.STEELBLUE;
         }
-        return Color.TURQUOISE;
-
-    }
-
-
-    private void dibujarEmisorObjetivo(GridPane gridPane) {
-
-        for (Elemento elementoEspecial : nivel.emisoresyObjetivos()) {
-            Circle circulo = new Circle(5);
-            Coordenada grafica = elementoEspecial.getPosicion().convertirCoordenada();
-
-            if (elementoEspecial instanceof EmisorLaser emisor) {
-                circulo.setFill(Color.RED);
-                dibujarLaser(emisor, gridPane);
-            }
-            else if (elementoEspecial instanceof Objetivo objetivo) {
-
-                circulo.setStroke(Color.RED);
-                circulo.setFill(Color.TRANSPARENT);
-            }
-            gridPane.add(circulo, grafica.y , grafica.x);
+        else if (elemento instanceof BloqueVidrio) {
+            return Color.AZURE;
         }
-    }
-
-    private void dibujarLaser(EmisorLaser emisor, GridPane gridPane) {
-        Laser laser = new Laser(emisor, nivel.devolverTablero());
-        ArrayList<String> direcciones = laser.getDireccion();
-        ArrayList<Coordenada> laserPath = laser.moverLaser();
-
-        for (int i = 0; i < laserPath.size(); i++) {
-            Coordenada coordenada = laserPath.get(i);
-
-            String direccion = direcciones.get(i);
-            Line l = switch (direccion) {
-                case "NW", "SE" -> new Line(0, 0, 50, 50);
-                case "SW", "NE" -> new Line(0, 50, 50, 0);
-                default -> null;
-            };
-
-            if (l != null) {
-                l.setStroke(Color.RED);
-                l.setStrokeWidth(2);
-                gridPane.add(l, coordenada.y, coordenada.x);
-            }
+        else if (elemento instanceof BloqueCristal) {
+            return Color.TURQUOISE;
         }
-    }
-
-    private void manejarClickCelda(int i, int j, Tablero tablero_logico) {
-        Coordenada coordenadaActual = new Coordenada(i, j);
-        Elemento elementoActual = tablero_logico.obtenerElemento(coordenadaActual);
-
-        if (posicionSeleccionada == null) {
-
-            if (elementoActual instanceof Bloque) {
-                if (((Bloque) elementoActual).noEsFijo()) {
-                    posicionSeleccionada = coordenadaActual;
-                }
-            }
-        }
-        else {
-            if (elementoActual instanceof Piso && ((Piso) elementoActual).estaVacio()) {
-                Bloque bloque = (Bloque) tablero_logico.obtenerElemento(posicionSeleccionada);
-                tablero_logico.actualizarTablero(coordenadaActual, bloque);
-
-                crearTablero();
-
-            }
-            posicionSeleccionada = null;
-        }
-
-        if (nivelTerminado()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Juego Terminado");
-            alert.setHeaderText("Felicidades, has ganado el juego");
-            alert.showAndWait();
-        }
-    }
-
-
-    private boolean nivelTerminado() {
-        return nivel.juegoGanado();
+        return Color.LIGHTGRAY;
     }
 
     public static void main(String[] args) {
         launch();
-
     }
 }

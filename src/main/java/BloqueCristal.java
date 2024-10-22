@@ -1,17 +1,16 @@
 public class BloqueCristal extends Bloque {
 
-    public BloqueCristal(Piso piso) {
-        super(piso , "cristal");
+    public BloqueCristal(Coordenada posicion) {
+        super(posicion);
     }
 
     @Override
-    public void movimientoLaser(Laser laser) {
+    public void interaccionLaser(Laser laser) {
+        Direccion direccionActual = laser.getDireccion();
 
-        Coordenada nuevaPosicion = laser.cambioPosicion(this.getPosicion(), "H");
-        Coordenada posicionSalida = laser.cambioPosicion(nuevaPosicion, laser.getDireccion().getLast());
+        boolean horizontal = laser.golpeHorizontal(this.getPosicion());
+        Coordenada posicionSalida = direccionActual.PosBloque(this.getPosicion(), horizontal);
 
-        laser.setPosicion(posicionSalida.convertirCoordenada());
-        laser.setDireccion(laser.getDireccion().getLast());
-
+        laser.setPosicion(posicionSalida);
     }
 }
