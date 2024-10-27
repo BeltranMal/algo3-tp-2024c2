@@ -13,7 +13,6 @@ public class Laser {
         this.nivel = nivel;
 
         ruta.add(posicion);
-        nivel.agregarLaser(this);
     }
 
     public void setPosicion(Coordenada posicion) {
@@ -73,5 +72,9 @@ public class Laser {
 
     public Nivel getNivel() {
         return nivel;
+    }
+
+    public void agregarANivel() {
+        nivel.agregarLaser(this);
     }
 }

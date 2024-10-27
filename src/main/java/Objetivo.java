@@ -14,10 +14,7 @@ public class Objetivo extends Elemento {
         return completo;
     }
 
-
     public void setCompleto(boolean alcanzado) {
         completo = alcanzado;
     }
-
-
 }

@@ -52,8 +52,6 @@ public class Nivel {
         int y = (Integer.parseInt(partes[1]));
         int x = (Integer.parseInt(partes[2]));
         Coordenada posicion = new Coordenada(x, y);
-
-
         return switch (partes[0]) {
             case "E" -> new EmisorLaser(posicion, Direccion.valueOf(partes[3]));
             case "G" -> new Objetivo(posicion);
@@ -97,18 +95,25 @@ public class Nivel {
         return laseresActivos;
     }
 
-    public void limpiarLaseres() {
+    public void reestablecerLasers() {
         laseresActivos.clear();
+        for (Elemento e : emisoryObjetivo) {
+            if (e.puedeSerGolpeadoPorLaser()) {
+                Objetivo objetivo = (Objetivo) e;
+                objetivo.setCompleto(false);
+            }
+            else{
+                EmisorLaser emisor = (EmisorLaser) e;
+                emisor.dispararLaser(this);
+            }
+        }
     }
-
     public void objetivosAlcanzados(ArrayList<Coordenada> ruta) {
-
         for (Elemento elemento : emisoryObjetivo) {
             if (elemento.puedeSerGolpeadoPorLaser()) {
+                Objetivo objetivo = (Objetivo) elemento;
                 for (Coordenada coordenada : ruta) {
                     if (elemento.getPosicion().x == coordenada.x && elemento.getPosicion().y == coordenada.y) {
-
-                        Objetivo objetivo = (Objetivo) elemento;
                         objetivo.setCompleto(true);
                     }
                 }
@@ -116,4 +121,3 @@ public class Nivel {
         }
     }
 }
-

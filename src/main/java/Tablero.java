@@ -25,11 +25,8 @@ public class Tablero {
         if (!posicionValida(coordenada)) {
             return false;
         }
-
         Elemento elemento = obtenerElemento(coordenada);
-
         return (!elemento.puedeSerGolpeadoPorLaser());
-
     }
     
     public void agregarElemento(Elemento elemento, Coordenada coordenada){

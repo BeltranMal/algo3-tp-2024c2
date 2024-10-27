@@ -8,7 +8,7 @@ public class BloqueVidrio extends Bloque {
 
         Direccion direccion = laser.getDireccion();
         Laser continuo = new Laser(laser.getPosicion(),direccion,laser.getNivel());
-
+        continuo.agregarANivel();
         Coordenada nuevaPosicion = direccion.PosBloque(this.getPosicion(),!continuo.golpeHorizontal(this.getPosicion()));
 
        continuo.setPosicion(nuevaPosicion);

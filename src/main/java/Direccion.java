@@ -1,4 +1,3 @@
-import javafx.util.Pair;
 import java.util.Map;
 
 public enum Direccion {
@@ -17,37 +16,37 @@ public enum Direccion {
             SW, SE,
             NW, NE
     );
-    private static final Map<Direccion, Pair<Integer, Integer>> coordenadasMapHorizontal = Map.of(
-            NE, new Pair<>(-1, 0),
-            NW, new Pair<>(-1, 0),
-            SW, new Pair<>(1, 0),
-            SE, new Pair<>(1, 0)
+    private static final Map<Direccion, Coordenada> coordenadasMapHorizontal = Map.of(
+            NE, new Coordenada(-1, 0),
+            NW, new Coordenada(-1, 0),
+            SW, new Coordenada(1, 0),
+            SE, new Coordenada(1, 0)
 
     );
 
-    private static final Map<Direccion, Pair<Integer, Integer>> coordenadasMapVertical = Map.of(
-            NE, new Pair<>(0, 1),
-            NW, new Pair<>(0, -1),
-            SW, new Pair<>(0, -1),
-            SE, new Pair<>(0, 1)
+    private static final Map<Direccion, Coordenada> coordenadasMapVertical = Map.of(
+            NE, new Coordenada(0, 1),
+            NW, new Coordenada(0, -1),
+            SW, new Coordenada(0, -1),
+            SE, new Coordenada(0, 1)
 
     );
 
     public Coordenada sigPosicion(Coordenada coordenada) {
-        int x = coordenadasMapHorizontal.get(this).getKey();
-        int y = coordenadasMapVertical.get(this).getValue();
+        int x = coordenadasMapHorizontal.get(this).x;
+        int y = coordenadasMapVertical.get(this).y;
         return new Coordenada(coordenada.x + x, coordenada.y + y);
     }
 
     public Coordenada PosBloque(Coordenada coordenada, boolean horizontal) {
-        Pair<Integer, Integer> delta;
+        Coordenada delta;
         if (horizontal) {
             delta = coordenadasMapHorizontal.get(this);
-            return new Coordenada(coordenada.x + delta.getKey(), coordenada.y + delta.getValue());
+            return new Coordenada(coordenada.x + delta.x, coordenada.y + delta.y);
         }
         delta = coordenadasMapVertical.get(this);
 
-        return new Coordenada(coordenada.x + delta.getKey(), coordenada.y + delta.getValue());
+        return new Coordenada(coordenada.x + delta.x, coordenada.y + delta.y);
     }
 
     public Direccion calcularDireccion(boolean horizontal) {

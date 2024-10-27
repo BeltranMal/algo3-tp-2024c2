@@ -4,6 +4,7 @@ public class EmisorLaser extends Elemento {
     public EmisorLaser(Coordenada posicion, Direccion direccion) {
         super(posicion);
         this.direccion = direccion;
+
     }
     @Override
     public boolean puedeSerGolpeadoPorLaser() {
@@ -15,7 +16,7 @@ public class EmisorLaser extends Elemento {
     }
 
     public void dispararLaser(Nivel nivel) {
-        new Laser(this.getPosicion(), direccion, nivel);
-
+        Laser laser = new Laser(this.getPosicion(), direccion, nivel);
+        laser.agregarANivel();
     }
 }
